@@ -10,14 +10,16 @@ picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
 picam2.start()
 
-cap = cv2.VideoCapture(0) # Camera is 480 x 640
+#cap = cv2.VideoCapture(0) # Camera is 480 x 640
+#crosshair = cv2.imread("crosshair.png")
 
 while True:
     frame = cv2.rotate(picam2.capture_array(), cv2.ROTATE_90_CLOCKWISE)
+    #merge = cv2.addWeighted(frame, 1, crosshair, 1, 0.0)
     cv2.imshow('Video',frame)
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
-cap.release()
+#cap.release()
 cv2.destroyAllWindows()
 quit()
